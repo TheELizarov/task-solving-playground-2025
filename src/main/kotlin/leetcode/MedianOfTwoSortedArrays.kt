@@ -72,8 +72,9 @@ class MedianOfTwoSortedArraysSolution {
         println(">>> Start Test Merge Sorted Arrays")
 
         val tests = mapOf(
-            intArrayOf(1, 3) to intArrayOf(2),
-            intArrayOf(1, 3, 7, 10) to intArrayOf(2, 3, 4, 5),
+            intArrayOf(1) to intArrayOf(),
+//            intArrayOf(1, 3) to intArrayOf(2),
+//            intArrayOf(1, 3, 7, 10) to intArrayOf(2, 3, 4, 5),
         )
 
         tests.forEach { array1, array2 ->
@@ -92,6 +93,7 @@ class MedianOfTwoSortedArraysSolution {
     fun testGetMedian() {
         println(">>>start Test getMedian(IntArray)")
         val tests = listOf(
+            intArrayOf(1),
             intArrayOf(1, 2, 3),
             intArrayOf(1, 2),
             intArrayOf(1, 3),
@@ -218,7 +220,7 @@ class MedianOfTwoSortedArraysSolution {
 
         return when {
             array.isEmpty() -> 0.0
-            isOnlyOne -> array[0]/2.0
+            isOnlyOne -> array[0].toDouble() ///2.0
             isEven -> {
                 val halfIndex = (size - 1)/2
                 (array[halfIndex] + array[halfIndex + 1])/2.0

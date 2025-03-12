@@ -3,7 +3,7 @@ package ru.kvado
 import ru.kvado.leetcode.MedianOfTwoSortedArraysSolution
 
 fun main() {
-//    testMedianOfTwoSortedArrays()
+    testMedianOfTwoSortedArrays()
     testMergeOfTwoSortedArrays()
 }
 
