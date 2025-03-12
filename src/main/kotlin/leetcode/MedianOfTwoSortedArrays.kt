@@ -24,14 +24,14 @@ class MedianOfTwoSortedArraysSolution {
     /**
      * <ru>
      *     Простой алгоритм:
-     *     - созадем массив nums3[n + m]
-     *     - наполняем его данными из двух массивов с учтоем сортировки
-     *     - вычисляем медианц
+     *     - создаем массив nums3[n + m]
+     *     - наполняем его данными из двух массивов с учетом сортировки
+     *     - вычисляем медиану
      *     Сложность: 2 for-а O(n^2)
      *
      *     Общие размышления (не окончательный вариант)
      *     Алгоритм решения:
-     *      1. берем массив, большей длинны (хотя это не обязательно), определяем его центральные элементы, запоминаем индекс
+     *      1. берем массив, большей длины (хотя это не обязательно), определяем его центральные элементы, запоминаем индекс
      *          - если нечетный, то это будет один элемент; если четный, то два.
      *      2. проходим for по второму массиву, для каждого элемента второго массива оцениваем:
      *          - по методу золотого сечения определяем, индекс этого элемента в первом массиве,
@@ -68,6 +68,27 @@ class MedianOfTwoSortedArraysSolution {
         return -1.0
     }
 
+    fun testMergeArrays() {
+        println(">>> Start Test Merge Sorted Arrays")
+
+        val tests = mapOf(
+            intArrayOf(1, 3) to intArrayOf(2),
+            intArrayOf(1, 3, 7, 10) to intArrayOf(2, 3, 4, 5),
+        )
+
+        tests.forEach { array1, array2 ->
+            println("Test:")
+            println("  array1 = ${array1.joinToString()}")
+            println("  array2 = ${array2.joinToString()}")
+            println("  merge = ${merge(array1, array2).joinToString()}")
+            println()
+        }
+        println("")
+
+
+        println(">>> End Test Merge Sorted Arrays")
+    }
+
     fun testGetMedian() {
         println(">>>start Test getMedian(IntArray)")
         val tests = listOf(
@@ -86,6 +107,105 @@ class MedianOfTwoSortedArraysSolution {
         }
 
         println(">>>end Test getMedian(IntArray)")
+    }
+
+    /**
+     * Слияние двух сортированных массивов
+     */
+    private fun merge(
+        array1: IntArray,
+        array2: IntArray
+    ): IntArray {
+        val size = array1.size + array2.size
+        val result = IntArray(size)
+
+        /**
+         * Хранение элементов из массивов
+         * для последующего сравнения между собой
+         * меньший элемент будет вставлен в result
+         *
+         * при след итерации будет помещен новый элемент из
+         * рассматриваемых массивов
+         */
+        val buffer = IntArray(2)
+
+        var index1 = 0
+        var index2 = 0
+
+        /**
+         * Индекс массива, элемент которого был перемещен
+         * из buffer в result
+         * может быть 1 или 2
+         */
+        var currentArray = 1
+
+        for (indexResult in 0 until size) {
+            val hasItemsInArray1 = index1 < array1.size
+            val hasItemsInArray2 = index2 < array2.size
+
+            val blockOnComparingItems = {
+                when {
+                    indexResult == 0 -> {
+                        buffer[0] = array1[index1]
+                        buffer[1] = array2[index2]
+                    }
+                    currentArray == 1 -> {
+                        buffer[0] = array1[index1]
+                    }
+                    currentArray == 2 -> {
+                        buffer[1] = array2[index2]
+                    }
+                }
+
+                result[indexResult] = when {
+                    buffer[0] < buffer[1] -> {
+                        currentArray = 1
+                        ++index1
+                        buffer[0]
+                    }
+                    else -> {
+                        currentArray = 2
+                        ++index2
+                        buffer[1]
+                    }
+                }
+            }
+            val blockOnCopyArray2ToResult = {
+                result[indexResult] = array2[index2]
+                ++index2
+            }
+            val blockOnCopyArray1ToResult = {
+                result[indexResult] = array1[index1]
+                ++index1
+            }
+
+            when {
+                hasItemsInArray1 && hasItemsInArray2 -> {
+                    /**
+                     * есть не рассмотренные элементы
+                     * в первом и втором массивах
+                     */
+                    blockOnComparingItems()
+                }
+                !hasItemsInArray1 && hasItemsInArray2 -> {
+                    /**
+                     * копируем все оставшиеся
+                     * элементы из array2 в result
+                     */
+                    blockOnCopyArray2ToResult()
+                }
+                hasItemsInArray1 && !hasItemsInArray2 -> {
+                    /**
+                     * копируем все оставшиеся элементы
+                     * из array1 в result
+                     */
+                    blockOnCopyArray1ToResult()
+                }
+                else -> break
+            }
+        }
+
+        return result
     }
 
     private fun getMedian(
