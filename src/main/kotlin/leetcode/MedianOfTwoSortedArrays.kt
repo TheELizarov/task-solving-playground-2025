@@ -65,7 +65,7 @@ class MedianOfTwoSortedArraysSolution {
         nums1: IntArray,
         nums2: IntArray
     ): Double {
-        return -1.0
+        return getMedian(merge(nums1, nums2))
     }
 
     fun testMergeArrays() {
