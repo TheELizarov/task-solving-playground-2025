@@ -2,7 +2,7 @@ plugins {
     kotlin("jvm") version "2.1.10"
 }
 
-group = "ru.kvado"
+group = "ru.theelizarov"
 version = "1.0-SNAPSHOT"
 
 repositories {

@@ -1,4 +1,4 @@
-package ru.kvado.leetcode
+package ru.theelizarov.leetcode
 
 /**
  * Task https://leetcode.com/problems/median-of-two-sorted-arrays/description/

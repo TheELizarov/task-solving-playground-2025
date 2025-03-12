@@ -1,6 +1,6 @@
-package ru.kvado
+package ru.theelizarov
 
-import ru.kvado.leetcode.MedianOfTwoSortedArraysSolution
+import ru.theelizarov.leetcode.MedianOfTwoSortedArraysSolution
 
 fun main() {
     testMedianOfTwoSortedArrays()
