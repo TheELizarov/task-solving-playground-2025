@@ -1,6 +1,8 @@
 package ru.theelizarov.leetcode
 
 /**
+ * Post with result https://leetcode.com/problems/median-of-two-sorted-arrays/solutions/6528742/simple-solution-on-kotlin-for-calculatin-xepe
+ *
  * Task https://leetcode.com/problems/median-of-two-sorted-arrays/description/
  *
  * Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
