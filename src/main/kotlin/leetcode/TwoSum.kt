@@ -1,6 +1,8 @@
 package ru.theelizarov.leetcode
 
 /**
+ * Solution https://leetcode.com/problems/two-sum/solutions/6532384/easy-solution-task-twosum-with-kotlin-by-rixj
+ *
  * Task https://leetcode.com/problems/two-sum/description/
  *
  * Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
@@ -36,20 +38,19 @@ class TwoSumSolution {
      * return массив из двух элементов, каждый элемент - индекс элементы из nums, сложив эти элементы, получаем
      * сумму target
      */
-    fun twoSum(nums: IntArray, target: Int): IntArray {
+    fun twoSum(
+        nums: IntArray,
+        target: Int
+    ): IntArray {
         val result = IntArray(2)
 
-        outer@for (i in nums.indices) {
-            if (nums[i] <= target) {
-                inner@ for (j in i + 1 until nums.size) {
-                    if (nums[j] <= target) {
-                        val sum = nums[i] + nums[j]
-                        if (sum == target) {
-                            result[0] = i
-                            result[1] = j
-                            break@outer
-                        }
-                    }
+        outer@ for (i in nums.indices) {
+            inner@ for (j in i + 1 until nums.size) {
+                val sum = nums[i] + nums[j]
+                if (sum == target) {
+                    result[0] = i
+                    result[1] = j
+                    break@outer
                 }
             }
         }
@@ -60,6 +61,8 @@ class TwoSumSolution {
     fun testTwoSum() {
         println(">>> Start Test TwoSum.kt")
         val tests = mapOf(
+            intArrayOf(-1, -2, -3, -4, -5) to -8,
+            intArrayOf(-3, 4, 3, 90) to 0,
             intArrayOf(2, 7, 11, 15) to 18,
             intArrayOf(3, 2, 4) to 6,
             intArrayOf(3, 3) to 6
