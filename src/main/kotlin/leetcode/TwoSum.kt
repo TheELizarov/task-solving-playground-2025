@@ -26,7 +26,7 @@ package ru.theelizarov.leetcode
  * Output: [0,1]
  */
 
-class Solution {
+class TwoSumSolution {
     /**
      * Очевидный алгоритм:
      * 1. перебираем for по всем элементам: суммируем каждый с каждым и сравниваем с target
@@ -39,8 +39,40 @@ class Solution {
     fun twoSum(nums: IntArray, target: Int): IntArray {
         val result = IntArray(2)
 
-
+        outer@for (i in nums.indices) {
+            if (nums[i] <= target) {
+                inner@ for (j in i + 1 until nums.size) {
+                    if (nums[j] <= target) {
+                        val sum = nums[i] + nums[j]
+                        if (sum == target) {
+                            result[0] = i
+                            result[1] = j
+                            break@outer
+                        }
+                    }
+                }
+            }
+        }
 
         return result
+    }
+
+    fun testTwoSum() {
+        println(">>> Start Test TwoSum.kt")
+        val tests = mapOf(
+            intArrayOf(2, 7, 11, 15) to 18,
+            intArrayOf(3, 2, 4) to 6,
+            intArrayOf(3, 3) to 6
+        )
+
+        tests.forEach { (array, target) ->
+            println("Test:")
+            println("array = ${array.joinToString()}")
+            println("target = $target")
+            println("result = ${twoSum(array, target).joinToString()}")
+            println()
+        }
+
+        println(">>> End Test TwoSum.kt")
     }
 }

@@ -1,8 +1,18 @@
 package ru.theelizarov
 
 import ru.theelizarov.leetcode.MedianOfTwoSortedArraysSolution
+import ru.theelizarov.leetcode.TwoSumSolution
 
 fun main() {
+    testTwoSum()
+}
+
+private fun testTwoSum() {
+    val solution = TwoSumSolution()
+    solution.testTwoSum()
+}
+
+private fun testAllMedianOfTwoSortedArrays() {
     testMedianOfTwoSortedArrays()
     testMergeOfTwoSortedArrays()
 }
