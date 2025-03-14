@@ -2,6 +2,8 @@ package ru.theelizarov.leetcode
 
 class PalindromeNumberSolution {
     /**
+     * Link solution https://leetcode.com/problems/palindrome-number/solutions/6536575/solving-check-palindrome-number-bit-by-b-guve
+     *
      * Task https://leetcode.com/problems/palindrome-number/
      *
      * Given an integer x, return true if x is a palindrome, and false otherwise.
