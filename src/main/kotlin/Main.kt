@@ -1,10 +1,16 @@
 package ru.theelizarov
 
 import ru.theelizarov.leetcode.MedianOfTwoSortedArraysSolution
+import ru.theelizarov.leetcode.PalindromeNumberSolution
 import ru.theelizarov.leetcode.TwoSumSolution
 
 fun main() {
-    testTwoSum()
+    testPalindrome()
+}
+
+private fun testPalindrome() {
+    val solution = PalindromeNumberSolution()
+    solution.testCheckPalindrome()
 }
 
 private fun testTwoSum() {

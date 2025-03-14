@@ -30,9 +30,57 @@ class PalindromeNumberSolution {
     fun isPalindrome(
         x: Int
     ): Boolean {
-        var result = false
+        return isPalindrome1(x)
+    }
 
+    fun testCheckPalindrome() {
+        println(">>>Start Test Palindrome")
 
+        val tests = listOf(1, -1, 0, 11, 12, 121, 123454321, 1212)
+        tests.forEach { test ->
+            println("test = $test")
+            println("palindrome = ${isPalindrome1(test)}")
+            println()
+        }
+
+        println(">>>End Test Palindrome")
+    }
+
+    /**
+     * Простой очевидный алгоритм:
+     *  1. x рассматриваем как строку
+     *  2. сравниваем каждый символ каждого разряда с права и слева
+     *  3. если есть несовпадения на каком-то разряде, то это не палиндром
+     *
+     * Замечания:
+     *  1. строка из одного символа - палиндром
+     *  2. отрицательное число - не палиндром
+     */
+    private fun isPalindrome1(
+        x: Int
+    ): Boolean {
+        var result = true
+
+        val value = x.toString()
+        val lastIndex = value.lastIndex
+
+        when {
+            lastIndex == 0-> {
+                result = true
+            }
+            x < 0 -> {
+                result = false
+            }
+            else -> {
+                value.forEachIndexed { index, left ->
+                    val right = value[lastIndex - index]
+                    if (left != right) {
+                        result = false
+                        return@forEachIndexed
+                    }
+                }
+            }
+        }
 
         return result
     }
