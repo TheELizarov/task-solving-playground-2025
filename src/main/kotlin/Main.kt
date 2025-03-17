@@ -1,11 +1,17 @@
 package ru.theelizarov
 
+import ru.theelizarov.leetcode.AddToNumbersSolution
 import ru.theelizarov.leetcode.MedianOfTwoSortedArraysSolution
 import ru.theelizarov.leetcode.PalindromeNumberSolution
 import ru.theelizarov.leetcode.TwoSumSolution
 
 fun main() {
-    testPalindrome()
+    testAddToNumbers()
+}
+
+private fun testAddToNumbers() {
+    val solution = AddToNumbersSolution()
+    solution.testAddToNumbers()
 }
 
 private fun testPalindrome() {

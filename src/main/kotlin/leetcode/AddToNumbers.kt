@@ -25,7 +25,7 @@ package ru.theelizarov.leetcode
  * Output: [8,9,9,9,0,0,0,1]
  *
  */
-class Solution {
+class AddToNumbersSolution {
     /**
      * Example:
      * var li = ListNode(5)
@@ -39,11 +39,90 @@ class Solution {
         l1: ListNode?,
         l2: ListNode?
     ): ListNode? {
-        return null
+        var result: ListNode? = null
+
+        var node = result
+        var node1 = l1
+        var node2 = l2
+        var offset = 0
+
+        var hasNode = true
+        while (hasNode) {
+            val value1 = node1?.x ?: 0
+            val value2 = node2?.x ?: 0
+
+            var value3 = value1 + value2 + offset
+            if (value3 >= 10) {
+                value3 -= 10
+                offset = 1
+            } else {
+                offset = 0
+            }
+
+            var newNode = ListNode(x = value3, link = null)
+            if (node != null) {
+                node.link = newNode
+                node = newNode
+            } else {
+                node = newNode
+                result = node
+            }
+
+            hasNode = node1?.link != null || node2?.link != null
+
+            if (!hasNode && offset > 0) {
+                newNode = ListNode(offset, link = null)
+                node.link = newNode
+                node = newNode
+            }
+
+            node1 = node1?.link
+            node2 = node2?.link
+        }
+
+        return result
+    }
+
+    fun testAddToNumbers() {
+        println(">>>Start Test AddToNumbers")
+        val n11 = ListNode(x = 3, link = null)
+        val n12 = ListNode(x = 4, link = n11)
+        val n13 = ListNode(x = 2, link = n12)
+
+        val n21 = ListNode(x = 4, link = null)
+        val n22 = ListNode(x = 6, link = n21)
+        val n23 = ListNode(x = 5, link = n22)
+
+        val tests = listOf(
+            n13 to n23
+        )
+        tests.forEach { nodes ->
+            println()
+            val l1 = nodes.first
+            val l2 = nodes.second
+            println("l1 = ${getString(l1)}")
+            println("l2 = ${getString(l2)}")
+            val result = addTwoNumbers(l1, l2)
+            println("result = ${getString(result)}")
+        }
+
+        println(">>>End Test AddToNumbers")
+    }
+
+    private fun getString(head: ListNode?): String {
+        val sb = StringBuilder()
+
+        var current = head
+        while (current != null) {
+            sb.append("${current.x}, ")
+            current = current.link
+        }
+
+        return sb.toString()
     }
 
     data class ListNode(
         val x: Int,
-        val link: ListNode?
+        var link: ListNode?
     )
 }
