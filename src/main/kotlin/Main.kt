@@ -1,12 +1,18 @@
 package ru.theelizarov
 
+import ru.theelizarov.hackerrank.SortingMarkToysSolution
 import ru.theelizarov.leetcode.AddToNumbersSolution
 import ru.theelizarov.leetcode.MedianOfTwoSortedArraysSolution
 import ru.theelizarov.leetcode.PalindromeNumberSolution
 import ru.theelizarov.leetcode.TwoSumSolution
 
 fun main() {
-    testAddToNumbers()
+    testSortingMarkToysSolution()
+}
+
+private fun testSortingMarkToysSolution() {
+    val solution = SortingMarkToysSolution()
+    solution.test()
 }
 
 private fun testAddToNumbers() {

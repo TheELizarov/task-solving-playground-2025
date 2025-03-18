@@ -26,19 +26,69 @@ package ru.theelizarov.hackerrank
  */
 class SortingMarkToysSolution {
     /**
-     *  Complete the 'maximumToys' function below.
+     * Алгоритм:
+     *  1. сортируем массив prices со стоимостями игрушек
+     *  2. проходим по массиву и считаем количество игрушек, сумма стоимостей которых меньше k
+     *  3. возвращаем количество игрушек
      *
-     * The function is expected to return an INTEGER.
-     * The function accepts following parameters:
-     *  1. INTEGER_ARRAY prices
-     *  2. INTEGER k
+     *  Примечание:
+     *   При сортировке можно не учитывать элементы, которые больше k
      */
     fun maximumToys(
         prices: Array<Int>,
-        k: Int)
-    : Int {
+        k: Int
+    ): Int {
         var result = 0
+        val lastIndex = prices.size - 1
+
+        /**
+         * Сортировка пузырьком
+         */
+        for (i in 0..lastIndex) {
+            val first = prices[i]
+            if (first < k) {
+                for (j in 0..lastIndex) {
+                    val second = prices[j]
+                    if (second < 0) {
+                        if (second < first) {
+                            prices[i] = second
+                            prices[j] = first
+                        }
+                    }
+                }
+            }
+        }
+
+        /**
+         * Подсчет количества игрушек,
+         * стоимость которых укладывается в бюджет k
+         */
+        var sum = 0
+        for (i in 0..lastIndex) {
+            sum += prices[i]
+            if (sum < k) {
+                ++result
+            } else {
+                break
+            }
+        }
 
         return result
+    }
+
+    fun test() {
+        println(">>>Start Test SortingMarkToysSolution")
+
+        val tests = listOf(
+            intArrayOf(1, 12, 5, 111, 200, 1000, 10) to 50
+        )
+        tests.forEach { test ->
+            println("Test")
+            println("array = ${test.first.joinToString()}")
+            println("k = ${test.second}")
+            println("result = ${maximumToys(test.first.toTypedArray(), test.second)}")
+        }
+
+        println(">>>End Test SortingMarkToysSolution")
     }
 }
