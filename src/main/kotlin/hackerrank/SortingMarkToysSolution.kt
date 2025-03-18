@@ -45,16 +45,11 @@ class SortingMarkToysSolution {
          * Сортировка пузырьком
          */
         for (i in 0..lastIndex) {
-            val first = prices[i]
-            if (first < k) {
-                for (j in 0..lastIndex) {
-                    val second = prices[j]
-                    if (second < 0) {
-                        if (second < first) {
-                            prices[i] = second
-                            prices[j] = first
-                        }
-                    }
+            for (j in 0..lastIndex) {
+                if (prices[j] > prices[i]) {
+                    val temp = prices[i]
+                    prices[i] = prices[j]
+                    prices[j] = temp
                 }
             }
         }
