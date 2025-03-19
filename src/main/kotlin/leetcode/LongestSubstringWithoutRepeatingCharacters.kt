@@ -26,11 +26,49 @@ package ru.theelizarov.leetcode
  *
  */
 class LongestSubstringWithoutRepeatingCharactersSolution {
+    /**
+     * Алгоритм:
+     *  1. Проходим по строке for
+     *  2. Рассматриваем каждый символ, если такого символа нет в массиве уникальных символов buffer
+     *   копируем его туда, в противном случае берем длину массива и сохраняем в переменную result
+     *
+     */
     fun lengthOfLongestSubstring(
-        s: String
+        source: String
     ): Int {
         var result = -1
 
+        val buffer = mutableListOf<Char>()
+        source.forEach { char ->
+            if (!buffer.contains(char)) {
+                buffer.add(char)
+            } else {
+                if (result < buffer.size) {
+                    result = buffer.size
+                }
+
+                buffer.clear()
+                buffer.add(char)
+            }
+        }
+
         return result
+    }
+
+    fun test() {
+        println(">>>Start Test LongestSubstringWithoutRepeatingCharactersSolution")
+
+        val tests = listOf(
+            "abcabcbb",
+            "bbbb",
+            "pwwkew"
+        )
+        tests.forEach { test ->
+            println("Test")
+            println("source = $test")
+            println("result = ${lengthOfLongestSubstring(test)}")
+        }
+
+        println(">>>End Test LongestSubstringWithoutRepeatingCharactersSolution")
     }
 }
