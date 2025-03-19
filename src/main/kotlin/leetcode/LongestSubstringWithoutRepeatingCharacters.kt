@@ -1,6 +1,8 @@
 package ru.theelizarov.leetcode
 
 /**
+ * Solution https://leetcode.com/problems/longest-substring-without-repeating-characters/solutions/6556272/solving-longest-substring-without-repeat-pp37
+ *
  * Task https://leetcode.com/problems/longest-substring-without-repeating-characters/
  *
  * Given a string s, find the length of the longest substring without duplicate characters.
@@ -36,7 +38,7 @@ class LongestSubstringWithoutRepeatingCharactersSolution {
     fun lengthOfLongestSubstring(
         source: String
     ): Int {
-        var result = -1
+        var result = 0
 
         val buffer = mutableListOf<Char>()
         source.forEach { char ->
@@ -47,9 +49,21 @@ class LongestSubstringWithoutRepeatingCharactersSolution {
                     result = buffer.size
                 }
 
+                val index = buffer.indexOf(char) + 1
+                val buffer2 = mutableListOf<Char>()
+                for (i in index..buffer.lastIndex) {
+                    buffer2.add(buffer[i])
+                }
+
                 buffer.clear()
+                buffer.addAll(buffer2)
+
                 buffer.add(char)
             }
+        }
+
+        if (result < buffer.size) {
+            result = buffer.size
         }
 
         return result
@@ -59,9 +73,12 @@ class LongestSubstringWithoutRepeatingCharactersSolution {
         println(">>>Start Test LongestSubstringWithoutRepeatingCharactersSolution")
 
         val tests = listOf(
-            "abcabcbb",
-            "bbbb",
-            "pwwkew"
+            "ohvhjdml",
+//            "dvdf",
+//            " ",
+//            "abcabcbb",
+//            "bbbb",
+//            "pwwkew"
         )
         tests.forEach { test ->
             println("Test")
