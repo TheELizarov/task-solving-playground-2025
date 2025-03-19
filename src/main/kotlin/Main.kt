@@ -1,13 +1,15 @@
 package ru.theelizarov
 
 import ru.theelizarov.hackerrank.SortingMarkToysSolution
-import ru.theelizarov.leetcode.AddToNumbersSolution
-import ru.theelizarov.leetcode.MedianOfTwoSortedArraysSolution
-import ru.theelizarov.leetcode.PalindromeNumberSolution
-import ru.theelizarov.leetcode.TwoSumSolution
+import ru.theelizarov.leetcode.*
 
 fun main() {
-    testSortingMarkToysSolution()
+    testLongestSubstringWithoutRepeatingCharactersSolution()
+}
+
+private fun testLongestSubstringWithoutRepeatingCharactersSolution() {
+    val solution = LongestSubstringWithoutRepeatingCharactersSolution()
+    solution.test()
 }
 
 private fun testSortingMarkToysSolution() {
