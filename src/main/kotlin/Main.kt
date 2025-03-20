@@ -4,7 +4,12 @@ import ru.theelizarov.hackerrank.SortingMarkToysSolution
 import ru.theelizarov.leetcode.*
 
 fun main() {
-    testLongestSubstringWithoutRepeatingCharactersSolution()
+    testLongestPalindromicSubstringSolution()
+}
+
+private fun testLongestPalindromicSubstringSolution() {
+    val solution = LongestPalindromicSubstringSolution()
+    solution.test()
 }
 
 private fun testLongestSubstringWithoutRepeatingCharactersSolution() {

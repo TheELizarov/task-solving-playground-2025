@@ -17,12 +17,58 @@ package ru.theelizarov.leetcode
  */
 class LongestPalindromicSubstringSolution {
     fun longestPalindrome(
-        s: String)
-    : String {
+        source: String
+    ): String {
         var result = ""
-
-
+        val lastIndex = source.lastIndex
+        for (i in 0..lastIndex) {
+            for (j in i..lastIndex) {
+                val substring = source.substring(i, j)
+                if (isPalindrome(substring)) {
+                    if (result.length < substring.length) {
+                        result = substring
+                    }
+                }
+            }
+        }
 
         return result
+    }
+
+    fun isPalindrome(
+        source: String
+    ): Boolean {
+        return when {
+            source.length == 1 -> true
+            else -> {
+                var  check = true
+                source.forEachIndexed { index, left ->
+                    val right = source[source.lastIndex - index]
+                    if (left != right) {
+                        check = false
+                        return@forEachIndexed
+                    }
+                }
+
+                check
+            }
+        }
+    }
+
+    fun test() {
+        println(">>>Start Test LongestPalindromicSubstringSolution")
+
+        val tests = listOf(
+            "babad",
+            "cbbd"
+        )
+        tests.forEach { test ->
+            println("Test")
+            println("source = $test")
+            println("answer = ${longestPalindrome(source = test)}")
+            println()
+        }
+
+        println(">>>End Test LongestPalindromicSubstringSolution")
     }
 }
