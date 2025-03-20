@@ -1,6 +1,8 @@
 package ru.theelizarov.leetcode
 
 /**
+ * Solution https://leetcode.com/problems/longest-palindromic-substring/solutions/6559857/solving-longest-palindromic-substring-ko-nk7o/
+ *
  * Task https://leetcode.com/problems/longest-palindromic-substring/
  *
  * Given a string s, return the longest palindromic substring in s.
@@ -20,13 +22,17 @@ class LongestPalindromicSubstringSolution {
         source: String
     ): String {
         var result = ""
-        val lastIndex = source.lastIndex
-        for (i in 0..lastIndex) {
-            for (j in i..lastIndex) {
-                val substring = source.substring(i, j)
-                if (isPalindrome(substring)) {
-                    if (result.length < substring.length) {
-                        result = substring
+        if (isPalindrome(source)) {
+            result = source
+        } else {
+            val lastIndex = source.lastIndex
+            for (i in 0..lastIndex) {
+                for (j in i..lastIndex) {
+                    val substring = source.substring(i, j + 1)
+                    if (isPalindrome(substring)) {
+                        if (result.length < substring.length) {
+                            result = substring
+                        }
                     }
                 }
             }
@@ -59,6 +65,8 @@ class LongestPalindromicSubstringSolution {
         println(">>>Start Test LongestPalindromicSubstringSolution")
 
         val tests = listOf(
+            "nmxyncuzlwhiobggiowtjexyzbzyhuqmpnyyimazcrnhrnkydxnioqhtchnnoqhuezypyxiepdvyesihlvbuzctptsaowfllxfdqvbwyitsegpbarqqpcrrvemwkglouhhtuxjdeppatdiiwhwvrqxqjcmzhuwurlqrshlsjyxksfjmhykyhcbpmrbsmbrrjwndjsgqdrafidmelnobhtpblozbzttpzheeffwysfrrwtewjnmqoyrvfxmgcmdoadagatwyocixggwppnmtrnfrbiijwojpetuqwknvtqgspuogrbqqptsrljjiaalmqlchlszflyixxpnkttzbrvhzrjzfbpuquuyzwhattxvoqpzieguwvmlrggrlmvwugeizpqovxttahwzyuuqupbfzjrzhvrbzttknpxxiylfzslhclqmlaaijjlrstpqqbrgoupsgqtvnkwqutepjowjiibrfnrtmnppwggxicoywtagadaodmcgmxfvryoqmnjwetwrrfsywffeehzpttzbzolbpthbonlemdifardqgsjdnwjrrbmsbrmpbchykyhmjfskxyjslhsrqlruwuhzmcjqxqrvwhwiidtappedjxuthhuolgkwmevrrcpqqrabpgestiywbvqdfxllfwoastptczubvlhiseyvdpeixypyzeuhqonnhcthqoinxdyknrhnrczamiyynpmquhyzbzyxejtwoiggboihwlzucnyxmn",
+            "a",
             "babad",
             "cbbd"
         )
