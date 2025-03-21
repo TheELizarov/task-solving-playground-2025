@@ -57,11 +57,18 @@ class ZigzagConversionSolution {
      */
     fun convert(
         source: String,
-        numRows: Int
+        rows: Int
     ): String {
         var result = ""
 
+        val cells = mutableListOf<List<Char>>()
 
+//        val column = 0
+//        for (j in 0 until rows) {
+//            val row = List(rows - 1) {
+//                source[j + column * rows]
+//            }
+//        }
 
         return result
     }
