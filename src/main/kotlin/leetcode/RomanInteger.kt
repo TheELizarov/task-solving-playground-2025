@@ -54,8 +54,14 @@ class RomanIntegerSolution {
         'M' to 1000,
     )
 
-    fun romanToInt(s: String): Int {
+    fun romanToInt(
+        source: String
+    ): Int {
         val result = 0
+
+        source.forEach { char ->
+
+        }
 
         return result
     }
