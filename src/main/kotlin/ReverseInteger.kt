@@ -1,5 +1,7 @@
 package ru.theelizarov
 
+import kotlin.math.absoluteValue
+
 /**
  * Task https://leetcode.com/problems/reverse-integer/
  *
@@ -30,9 +32,25 @@ package ru.theelizarov
 class ReverseIntegerSolution {
     class Solution {
         fun reverse(x: Int): Int {
-            var result = 0
+            return reverse1(x)
+        }
 
+        /**
+         * Простой алгоритм при преобразовании числа в строку,
+         * реверс ее и преобразовании обратно в число
+         */
+        private fun reverse1(
+            x: Int
+        ): Int {
 
+            var result = x.absoluteValue
+                .toString()
+                .reversed()
+                .toInt()
+
+            if (x < 0) {
+               result *= -1
+            }
 
             return result
         }
