@@ -30,29 +30,45 @@ import kotlin.math.absoluteValue
  * -231 <= x <= 231 - 1
  */
 class ReverseIntegerSolution {
-    class Solution {
-        fun reverse(x: Int): Int {
-            return reverse1(x)
+
+    fun reverse(x: Int): Int {
+        return when (val value = x.toLong()) {
+            !in Int.MIN_VALUE..Int.MAX_VALUE -> 0
+            else -> reverse1(value)
+        }
+    }
+
+    fun test() {
+        println(">>> Start Test ReverseInteger")
+
+        val tests = listOf(
+            1534236469,
+            9646324351
+        )
+        tests.forEach { test ->
+            println("Test x = $test")
+            println("Reversed x = ${reverse1(test.toLong())}")
         }
 
-        /**
-         * Простой алгоритм при преобразовании числа в строку,
-         * реверс ее и преобразовании обратно в число
-         */
-        private fun reverse1(
-            x: Int
-        ): Int {
+        println(">>> End Test ReverseInteger")
+    }
 
-            var result = x.absoluteValue
-                .toString()
-                .reversed()
-                .toInt()
+    /**
+     * Простой алгоритм при преобразовании числа в строку,
+     * реверс ее и преобразовании обратно в число
+     */
+    private fun reverse1(
+        x: Long
+    ): Int {
+        var result = x.absoluteValue
+            .toString()
+            .reversed()
+            .toLong()
 
-            if (x < 0) {
-               result *= -1
-            }
-
-            return result
+        if (x < 0) {
+            result *= -1
         }
+
+        return result.toInt()
     }
 }
