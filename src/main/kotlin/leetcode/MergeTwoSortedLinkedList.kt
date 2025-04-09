@@ -48,7 +48,11 @@ class MergeTwoSortedLinkedListSolution {
         list1: ListNode?,
         list2: ListNode?
     ): ListNode? {
-        return null
+        val result: ListNode? = null
+
+
+
+        return result
     }
 
     data class ListNode(
